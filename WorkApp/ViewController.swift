@@ -10,7 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
+    @IBOutlet var location1: UITextField!
+    @IBOutlet var location2: UITextField!
+    @IBOutlet var location3: UITextField!
+    @IBOutlet var location4: UITextField!
+    @IBOutlet var location5: UITextField!
+    
     @IBOutlet var pieceCount1: UITextField!
     @IBOutlet var pieceCount2: UITextField!
     @IBOutlet var pieceCount3: UITextField!
@@ -45,34 +50,57 @@ class ViewController: UIViewController {
         self.view.endEditing(true)
     }
 
-//    @objc func dismissKeyboard() {
-//        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-//        view.endEditing(true)
-//    }
-//    
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
+//---------------------------- CLEAR BUTTONS----------------------------------//
+    
+    @IBAction func clearLocationsButton(_ sender: UIButton) {
+        self.location1.text = nil
+        self.location2.text = nil
+        self.location3.text = nil
+        self.location4.text = nil
+        self.location5.text = nil
+    }
+    
+    @IBAction func clearTotalsButton(_ sender: UIButton) {
+        self.pieceCount1.text = nil
+        self.pieceCount2.text = nil
+        self.pieceCount3.text = nil
+        self.pieceCount4.text = nil
+        self.pieceCount5.text = nil
+        
+        self.dollarAmount1.text = nil
+        self.dollarAmount2.text = nil
+        self.dollarAmount3.text = nil
+        self.dollarAmount4.text = nil
+        self.dollarAmount5.text = nil
+        
+        self.mdwCount1.text = nil
+        self.mdwCount2.text = nil
+        self.mdwCount3.text = nil
+        
+        self.pieceTotal.text = nil
+        self.dollarTotal.text = nil
+        self.mdwTotal.text = nil
+    }
+
     
 
-
+    
 //---------------------------- PIECE TOTALS ----------------------------------//
     
     @IBAction func addTotal(_ sender: Any) {
-        let firstPiece = Double(pieceCount1.text!)
-        let secondPiece = Double(pieceCount2.text!)
-        let thirdPiece = Double(pieceCount3.text!)
-        let fourthPiece = Double(pieceCount4.text!)
-        let fifthPiece = Double(pieceCount5.text!)
+        let firstPiece = Int(pieceCount1.text!)
+        let secondPiece = Int(pieceCount2.text!)
+        let thirdPiece = Int(pieceCount3.text!)
+        let fourthPiece = Int(pieceCount4.text!)
+        let fifthPiece = Int(pieceCount5.text!)
         
         
         if firstPiece != nil && secondPiece != nil && thirdPiece != nil && fourthPiece != nil && fifthPiece != nil {
             
             
-        let pieceOutPut = Double(firstPiece! + secondPiece!) + Double(thirdPiece! + fourthPiece!) + Double(fifthPiece!)
+        let pieceOutPut = Int(firstPiece! + secondPiece!) + Int(thirdPiece! + fourthPiece!) + Int(fifthPiece!)
         
-        pieceTotal.text = "\(pieceOutPut)"
+        pieceTotal.text = " \(pieceOutPut)"
         } else {
             
             let alertController = UIAlertController(title: "Missing Info", message:
@@ -81,7 +109,6 @@ class ViewController: UIViewController {
             
             self.present(alertController, animated: true, completion: nil)
         }
-        
         
         
 //---------------------------- DOLLAR TOTALS ----------------------------------//
@@ -96,7 +123,7 @@ class ViewController: UIViewController {
         
         let dollarOutPut = Double(firstDollar! + secondDollar!) + Double(thirdDollar! + fourthDollar!) + Double(fifthDollar!)
         
-        dollarTotal.text = "\(dollarOutPut)"
+        dollarTotal.text = " $\(dollarOutPut)"
         } else {
             let alertController = UIAlertController(title: "Missing Info", message:
                 "Enter 0 for blank counts", preferredStyle: UIAlertControllerStyle.alert)
@@ -109,15 +136,15 @@ class ViewController: UIViewController {
    
 //---------------------------- MDW TOTALS ----------------------------------//
         
-        let mdwCountOne = Double(mdwCount1.text!)
-        let mdwCountTwo = Double(mdwCount2.text!)
-        let mdwCountThree = Double(mdwCount3.text!)
+        let mdwCountOne = Int(mdwCount1.text!)
+        let mdwCountTwo = Int(mdwCount2.text!)
+        let mdwCountThree = Int(mdwCount3.text!)
         
         if mdwCountOne != nil && mdwCountTwo != nil && mdwCountThree != nil {
         
-        let mdwOutPut = Double(mdwCountOne! + mdwCountTwo!) + Double(mdwCountThree!)
+        let mdwOutPut = Int(mdwCountOne! + mdwCountTwo!) + Int(mdwCountThree!)
     
-        mdwTotal.text = "\(mdwOutPut)"
+        mdwTotal.text = " \(mdwOutPut)"
             
         } else {
             let alertController = UIAlertController(title: "Missing Info", message:
